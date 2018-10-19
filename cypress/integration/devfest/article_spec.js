@@ -1,16 +1,7 @@
 describe('Article page', function() {
   context('In an anonymous context', function() {
     it('should display the article page', function() {
-      cy.server()
-      cy.route(
-        '/api/articles/article2-oni8y2',
-        'fixture:/article/article-oni8y2.json'
-      ).as('getArticle')
-      cy.route(
-        '/api/articles/article2-oni8y2/comments',
-        'fixture:/comments/comments-oni8y2.json'
-      ).as('getArticleComments')
-      cy.route('/sockjs-node/**', {})
+      // TODO Intercept and stub the response to make it works !
 
       cy.visit('/article/article2-oni8y2')
       cy.get('h1').should('contain', 'Article2')
@@ -70,6 +61,7 @@ describe('Article page', function() {
 
   context('In an authenticated context', function() {
     beforeEach(function() {
+      // TODO You can do better !
       cy.visit('/login')
       cy.get('input[type=email]').type('devfest@nantes.fr')
       cy.get('input[type=password]').type('Nantes1234{enter}')
